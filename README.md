@@ -2,9 +2,11 @@
 
 A powerful content-based movie recommendation system with dual-mode functionality: get AI-powered movie recommendations or search movies by actors and directors.
 
-![Python](https://img.shields.io/badge/python-3.13-blue.svg)
-![Streamlit](https://img.shields.io/badge/streamlit-1.39-red.svg)
+![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+![Streamlit](https://img.shields.io/badge/streamlit-1.50-red.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Status](https://img.shields.io/badge/status-live-success.svg)
+[![Deployed on Render](https://img.shields.io/badge/Deployed%20on-Render-46E3B7.svg)](https://movie-recommendor-jp89.onrender.com/)
 
 ## ✨ Features
 
@@ -39,7 +41,7 @@ A powerful content-based movie recommendation system with dual-mode functionalit
 
 ## 🚀 Live Demo
 
-🔗 **[Try it here!](#)** _(Add your Render URL after deployment)_
+🔗 **[https://movie-recommendor-jp89.onrender.com/](https://movie-recommendor-jp89.onrender.com/)** - Try it now!
 
 ## 📸 Screenshots
 
@@ -56,34 +58,40 @@ _Add screenshots of your app here_
 ## 📦 Installation
 
 ### Prerequisites
-- Python 3.13+
+- Python 3.11+
 - pip package manager
+- Git LFS (for large similarity matrix file)
 
 ### Local Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/DeepMehta06/Projects.git
-   cd movie_recommender_system/movie_recommendor
+   git clone https://github.com/DeepMehta06/movie_recommendor.git
+   cd movie_recommendor
    ```
 
-2. **Install dependencies:**
+2. **Install Git LFS and pull large files:**
+   ```bash
+   git lfs install
+   git lfs pull
+   ```
+
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-
-3. **Ensure pickle files exist:**
    - `movies.pkl` (4,805 movies with cast/crew data)
    - `similarity_list.pkl` (4805x4805 similarity matrix)
-   
-   If missing, run the preprocessing notebook to generate them.
+4. **Ensure pickle files exist:**
+   - `movies.pkl` (2.16 MB - movie dataset)
+   - `similarity_list.pkl` (176 MB - similarity matrix, via Git LFS)
 
-4. **Run the app:**
+5. **Run the app:**
    ```bash
    streamlit run app.py
    ```
 
-5. **Open browser:**
+6. **Open browser:**
    Navigate to `http://localhost:8501`
 
 ## 📁 Project Structure
@@ -151,13 +159,36 @@ OMDB_API_KEY = "your_api_key_here"
 
 ## 🌐 Deployment
 
-Deploy to Render in 5 minutes! Follow the [Deployment Guide](DEPLOYMENT_GUIDE.md)
+✅ **Currently deployed on [Render](https://render.com/)** - Live at [movie-recommendor-jp89.onrender.com](https://movie-recommendor-jp89.onrender.com/)
 
-Quick steps:
-1. Push code to GitHub
-2. Create new Web Service on Render
-3. Configure root directory: `movie_recommendor`
-4. Deploy!
+### Deploy Your Own Instance
+
+1. **Push to GitHub:**
+   ```bash
+   git push origin main
+   ```
+
+2. **Create Render Web Service:**
+   - Go to [Render Dashboard](https://dashboard.render.com/)
+   - Click "New +" → "Web Service"
+   - Connect your GitHub repository
+
+3. **Configure Settings:**
+   - **Name:** movie-recommendor (or your choice)
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `bash start.sh`
+   - **Environment Variable:** `PYTHON_VERSION` = `3.11.0`
+
+4. **Deploy!**
+   - Click "Create Web Service"
+   - Wait 3-5 minutes for deployment
+   - Your app will be live!
+
+**Note:** Free tier on Render includes:
+- 512 MB RAM
+- Automatic deploys from GitHub
+- Custom domain support
+- HTTPS included
 
 ## 📊 Dataset Information
 
