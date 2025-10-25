@@ -5,6 +5,8 @@ import re
 from difflib import get_close_matches
 import requests
 from urllib.parse import quote
+import os
+import sys
 
 # Page configuration
 slt.set_page_config(
@@ -12,6 +14,11 @@ slt.set_page_config(
     page_icon="🎬",
     layout="wide"
 )
+
+# Health check endpoint for Render
+@slt.cache_data
+def health_check():
+    return "OK"
 
 # Custom CSS for better UI with Lucide icons
 slt.markdown("""
@@ -112,9 +119,31 @@ slt.markdown("""
 # OMDb API Configuration
 OMDB_API_KEY = "8fadb753"  # Your API key
 
-# Load pickled data
-movies_df = pickle.load(open('movies.pkl', 'rb'))
-similarity = pickle.load(open('similarity_list.pkl', 'rb'))
+# Load pickled data with caching and error handling
+@slt.cache_resource
+def load_data():
+    """Load pickle files with error handling"""
+    try:
+        print("Loading movies data...")
+        with open('movies.pkl', 'rb') as f:
+            movies_df = pickle.load(f)
+        print(f"✓ Loaded {len(movies_df)} movies")
+        
+        print("Loading similarity matrix...")
+        with open('similarity_list.pkl', 'rb') as f:
+            similarity = pickle.load(f)
+        print(f"✓ Loaded similarity matrix: {similarity.shape}")
+        
+        return movies_df, similarity
+    except FileNotFoundError as e:
+        slt.error(f"❌ Data files not found: {e}")
+        slt.stop()
+    except Exception as e:
+        slt.error(f"❌ Error loading data: {e}")
+        slt.stop()
+
+# Load data
+movies_df, similarity = load_data()
 
 slt.title("Movie Recommender System")
 slt.caption("Powered by Content-Based Filtering & Machine Learning")
