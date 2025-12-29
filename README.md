@@ -37,7 +37,7 @@ Traditional movie discovery faces **critical challenges**:
 
 </td>
 <td width="40%">
-<img src="movie_recommendor/website_images/Screenshot 2025-12-29 193403.png" width="100%" alt="Movie Recommender System Interface">
+<img src="./website_images/frontend_page.png" width="100%" alt="Movie Recommender System Interface">
 </td>
 </tr>
 </table>
@@ -107,8 +107,8 @@ Traditional movie discovery faces **critical challenges**:
       <td><b>👤 Actor/Director Search Mode</b></td>
     </tr>
     <tr>
-      <td><img src="movie_recommendor/website_images/Screenshot 2025-12-29 193403.png" alt="Recommendation Mode" width="100%"></td>
-      <td><img src="movie_recommendor/website_images/Screenshot 2025-12-29 193416.png" alt="Search Mode" width="100%"></td>
+      <td><img src="./website_images/recommended_movies.png" alt="Recommendation Mode" width="100%"></td>
+      <td><img src="./website_images/movie_desc.png" alt="Search Mode" width="100%"></td>
     </tr>
     <tr>
       <td colspan="2" align="center"><b>🎬 Movie Results Grid with Live Posters</b></td>
