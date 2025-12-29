@@ -123,16 +123,17 @@ OMDB_API_KEY = "8fadb753"  # Your API key
 @slt.cache_resource
 def load_data():
     """Load pickle files with error handling"""
+    import gzip
     try:
         print("Loading movies data...")
         with open('movies.pkl', 'rb') as f:
             movies_df = pickle.load(f)
         print(f"✓ Loaded {len(movies_df)} movies")
         
-        print("Loading similarity matrix...")
-        with open('similarity_list.pkl', 'rb') as f:
+        print("Loading similarity matrix (optimized)...")
+        with gzip.open('similarity_optimized.pkl.gz', 'rb') as f:
             similarity = pickle.load(f)
-        print(f"✓ Loaded similarity matrix: {similarity.shape}")
+        print(f"✓ Loaded similarity matrix: {similarity.shape} (compressed)")
         
         return movies_df, similarity
     except FileNotFoundError as e:
@@ -380,7 +381,7 @@ if search_mode == ":material/movie: Recommend Similar Movies":
                                         unsafe_allow_html=True
                                     )
                                     
-                                    slt.progress(similarity_score / 100)
+                                    slt.progress(float(similarity_score) / 100)
                                     slt.markdown(f'<p class="similarity-score"><i data-lucide="target" class="lucide-icon"></i> {similarity_score}% Match</p>', unsafe_allow_html=True)
                                     
                                     # View Details button with popover
@@ -406,7 +407,7 @@ if search_mode == ":material/movie: Recommend Similar Movies":
                                         slt.markdown(f"**Cast:** {details['actors']}")
                                 else:
                                     # Just show similarity if API fails
-                                    slt.progress(similarity_score / 100)
+                                    slt.progress(float(similarity_score) / 100)
                                     slt.markdown(f'<p class="similarity-score"><i data-lucide="target" class="lucide-icon"></i> {similarity_score}% Match</p>', unsafe_allow_html=True)
                                     slt.caption("Details unavailable")
                                 
