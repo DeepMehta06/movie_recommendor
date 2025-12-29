@@ -108,13 +108,13 @@ Traditional movie discovery faces **critical challenges**:
     </tr>
     <tr>
       <td><img src="./website_images/recommended_movies.png" alt="Recommendation Mode" width="100%"></td>
-      <td><img src="./website_images/movie_desc.png" alt="Search Mode" width="100%"></td>
+      <td><img src="./website_images/image.png" alt="Search Mode" width="100%"></td>
     </tr>
     <tr>
       <td colspan="2" align="center"><b>🎬 Movie Results Grid with Live Posters</b></td>
     </tr>
     <tr>
-      <td colspan="2"><img src="movie_recommendor/website_images/Screenshot 2025-12-29 193429.png" alt="Results Grid" width="100%"></td>
+      <td colspan="2"><img src="./website_images/movie_desc.png" alt="Results Grid" width="100%"></td>
     </tr>
   </table>
 </div>
